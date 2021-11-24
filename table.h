@@ -6,41 +6,8 @@
  * Purpose: Defines the BST table class
  */
 #pragma once
-#include "website.h"
+#include "treenode.h"
 #include "utils.h"
-
-struct node
-{
-	node(const int& val)//const Website& website)
-	{
-	//data = new Website(website);
-		data = new int(val);
-		left = nullptr;
-		right = nullptr;
-	}
-	~node()
-	{
-		delete data;
-		data = nullptr;
-		left = nullptr;
-		right = nullptr;
-	}
-	friend std::ostream& operator<<(std::ostream& out, const node& node)
-	/* Purpose: Overloaded insertion operator for printing Website data
-	 * Parameters:
-	 *      -std::ostream& out - ostream object
-	 *      -const Node& node - node to be printed
-	 * Return: std::ostream& out - ostream object with data inserted
-	 */
-	{
-		out << *(node.data);
-		return out;
-	}
-	int * data;
-	//Website * data;
-	node * left;
-	node * right;
-};
 
 class Table
 /*
@@ -63,15 +30,15 @@ class Table
 		int * size;
 		void display(node * root);
 		void destroy(node *& root);
-		bool insert(node *& root, const int& val);
-		bool remove(node *& root, const int& val);
-		void deleteNode(node *& toDelete);
-		/*void remove(node * root, const char keyword[]);
-		void removeTopic(node * root, const char keyword[]);*/
-		void rotate(node *& root);
-		void singleLeft(node *& root);
-		void singleRight(node *& root);
-		void  doubleLeft(node *& root);
-		void doubleRight(node *& root);
+		node * insert(node *& root, const int& val);
+		node * remove(node *& root, const int& val);
+		node * deleteNode(node *& toDelete);
+		/*node * remove(node * root, const char keyword[]);
+		node * removeTopic(node * root, const char keyword[]);*/
+		node * rotate(node *& root);
+		node * singleLeft(node *& root);
+		node * singleRight(node *& root);
+		node *  doubleLeft(node *& root);
+		node * doubleRight(node *& root);
 		//void retrieve(Node * root, const char keyword[], Website *& retrieved);
 };

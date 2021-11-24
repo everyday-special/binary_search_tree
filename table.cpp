@@ -51,39 +51,15 @@ bool Table::insert(const int& val)
 
 
 node * Table::remove(node *& root, const int& val)
-// TODO: FIX THIS FUNCTION
 {
 	if (!root)
 		return root;
 	else if (*(root->data) == val)
-	{
-		if (root->right)
-		{
-			node * curr = root->right;
-			node * prev = root;
-			while (curr->left)
-			{
-				prev = curr;
-				curr = curr->left;
-			}
-			delete root->data;
-			root->data = new int(*(curr->data));
-			prev->left = curr->right;
-			delete curr;
-			curr = nullptr;
-		}
-		else
-		{
-			node * temp = root;
-			root = temp->left;
-			delete temp;
-			temp = nullptr;
-		}
-	}
+		return deleteNode(root);
 	else if (*(root->data) < val)
 		root->right = remove(root->right, val);
 	else
-		root->left = remove(root->right, val);
+		root->left = remove(root->left, val);
 	if (getHeight(root->left) - getHeight(root->right) > 1 || getHeight(root->left) - getHeight(root->right) < -1)
                 root = rotate(root);
         return root;
@@ -91,7 +67,63 @@ node * Table::remove(node *& root, const int& val)
 
 
 
-node* Table::insert(node *& root, const int& val)
+node * Table::deleteNode(node *& toDelete)
+{
+	// If toDelete is a leaf...
+	if (!(toDelete->left) && !(toDelete->right))
+	{
+		delete toDelete;
+		toDelete = nullptr;
+		return toDelete;
+	}
+	// If toDelete has only left branch
+	else if (!(toDelete->right))
+	{
+		node * temp = toDelete->left;
+		delete toDelete;
+		toDelete = nullptr;
+		return temp;
+	}
+	// If toDelete has only right branch
+	else if (!(toDelete->left))
+	{
+		node * temp = toDelete->right;
+		delete toDelete;
+		toDelete = nullptr;
+		return temp;
+	}
+	// If toDelete has both branches
+	else
+	{
+		node * prev = nullptr;
+		node * curr = toDelete->right;
+		if (!(curr->left))
+		{
+			curr->left = toDelete->left;
+			delete toDelete;
+			toDelete = nullptr;
+			return curr;
+		}
+		else
+		{
+			while (curr->left)
+			{
+				prev = curr;
+				curr = curr->left;
+			}
+			prev->left = curr->right;
+			curr->left = toDelete->left;
+			curr->right = toDelete->right;
+			delete toDelete;
+			toDelete = nullptr;
+			return curr;
+		}
+	}
+}
+
+
+
+node * Table::insert(node *& root, const int& val)
 {
 	if (!root)
 	{
@@ -112,7 +144,7 @@ node* Table::insert(node *& root, const int& val)
 
 
 
-node* Table::rotate(node *& root)
+node * Table::rotate(node *& root)
 {
 	node * l = root->left;
 	node * r = root->right;
@@ -134,7 +166,7 @@ node* Table::rotate(node *& root)
 
 
 
-node* Table::singleLeft(node *& root)
+node * Table::singleLeft(node *& root)
 {
 	node * r = root->right;
 	root->right = r->left;
@@ -144,7 +176,7 @@ node* Table::singleLeft(node *& root)
 
 
 
-node* Table::singleRight(node *& root)
+node * Table::singleRight(node *& root)
 {
 	node * l = root->left;
 	root->left = l->right;
@@ -153,7 +185,7 @@ node* Table::singleRight(node *& root)
 }
 
 
-node* Table::doubleLeft(node *& root)
+node * Table::doubleLeft(node *& root)
 {
 	node * r = singleRight(root->right);
 	root->right = r->left;
@@ -163,7 +195,7 @@ node* Table::doubleLeft(node *& root)
 
 
 
-node* Table::doubleRight(node *& root)
+node * Table::doubleRight(node *& root)
 {
 	node * l = singleLeft(root->left);
 	root->left = l->right;
