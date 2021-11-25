@@ -8,10 +8,10 @@
 
 #include "treenode.h"
 
-node::node(const int& val)//const Website& website)
+node::node(const Website& website)
 {
-        //data = new Website(website);
-	data = new int(val);
+        data = new Website(website);
+	//data = new int(val);
 	left = nullptr;
 	right = nullptr;
 }

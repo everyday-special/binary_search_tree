@@ -30,36 +30,42 @@ void Table::destroy(node *& root)
 
 
 
-bool Table::remove(const int& val)
+bool Table::remove(const char toDelete[])
 {
 	int old_size = *size;
-	root = remove(root, val);
+	root = remove(root, toDelete);
 	int new_size = *size;
 	return (old_size != new_size);
 }
 
 
 
-bool Table::insert(const int& val)
+bool Table::insert(Website& newWebsite)
 {
 	int old_size = *size;
-	root = insert(root, val);
+	root = insert(root, newWebsite);
 	int new_size = *size;
 	return (old_size != new_size);
 }
 
 
 
-node * Table::remove(node *& root, const int& val)
+node * Table::remove(node *& root, const char toDelete[])
 {
 	if (!root)
 		return root;
-	else if (*(root->data) == val)
+	char rootKeyword[MAX_SIZE];
+	(*(root->data)).getKeyword(rootKeyword);
+	int result = strcmp(toDelete, rootKeyword);
+	if (result == 0)
+	{
+		(*size)--;
 		return deleteNode(root);
-	else if (*(root->data) < val)
-		root->right = remove(root->right, val);
+	}
+	else if (result > 0)
+		root->right = remove(root->right, toDelete);
 	else
-		root->left = remove(root->left, val);
+		root->left = remove(root->left, toDelete);
 	if (getHeight(root->left) - getHeight(root->right) > 1 || getHeight(root->left) - getHeight(root->right) < -1)
                 root = rotate(root);
         return root;
@@ -123,20 +129,25 @@ node * Table::deleteNode(node *& toDelete)
 
 
 
-node * Table::insert(node *& root, const int& val)
+node * Table::insert(node *& root, Website& newWebsite)
 {
 	if (!root)
 	{
-		node * newNode = new node(val);
+		node * newNode = new node(newWebsite);
 		(*size)++;
 		return newNode;
 	}
-	else if (*(root->data) == val)
-		return root;
-	else if (*(root->data) < val)
-		root->right = insert(root->right, val);
+	char rootKeyword[MAX_SIZE];
+	char newKeyword[MAX_SIZE];
+	(*(root->data)).getKeyword(rootKeyword);
+	newWebsite.getKeyword(newKeyword);
+	int result = strcmp(newKeyword, rootKeyword);
+	if (result == 0)
+	return root;
+	else if (result > 0)
+		root->right = insert(root->right, newWebsite);
 	else
-		root->left = insert(root->left, val);
+		root->left = insert(root->left, newWebsite);
 	if (getHeight(root->left) - getHeight(root->right) > 1 || getHeight(root->left) - getHeight(root->right) < -1)
 		root = rotate(root);
 	return root;
@@ -226,7 +237,7 @@ void Table::display(node * root)
 	if (root)
 	{
 		display(root->left);
-		std::cout << "Level " << getHeight(root) << ": " << *root << std::endl;
+		std::cout << *root << std::endl;
 		display(root->right);
 	}
 }

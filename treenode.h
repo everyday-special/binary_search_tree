@@ -13,7 +13,7 @@ class node
  */
 {
 	public:
-		node(const int& val);
+		node(const Website& website);
 		~node();
 
 		friend std::ostream& operator<<(std::ostream& out, const node& node)
@@ -30,8 +30,8 @@ class node
 
 
 	private:
-		int * data;
-		//Website * data;
+		//int * data;
+		Website * data;
 		node * left;
 		node * right;
 		friend class Table;

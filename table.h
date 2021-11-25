@@ -17,8 +17,8 @@ class Table
 		Table();
 		~Table();
 		int getHeight(node * root);
-		bool insert(const int& val);
-		bool remove(const int& val);
+		bool insert(Website& newWebsite);
+		bool remove(const char toRemove[]);
 		/*bool insert(const Website& website);
 		bool remove(const char keyword[]);
 		bool removeTopic(const char topic[]);
@@ -30,8 +30,8 @@ class Table
 		int * size;
 		void display(node * root);
 		void destroy(node *& root);
-		node * insert(node *& root, const int& val);
-		node * remove(node *& root, const int& val);
+		node * insert(node *& root, Website& newWebsite);
+		node * remove(node *& root, const char toRemove[]);
 		node * deleteNode(node *& toDelete);
 		/*node * remove(node * root, const char keyword[]);
 		node * removeTopic(node * root, const char keyword[]);*/

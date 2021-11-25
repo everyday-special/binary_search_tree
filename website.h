@@ -40,6 +40,7 @@ class Website
 		void operator=(const Website& srcWebsite);
 		void setReview(const char newReview[]);
 		void setRating(const int& newRating);
+		void getKeyword(char result[]);
 		
 		friend std::ostream& operator<<(std::ostream& out, const Website& website);
 
@@ -50,4 +51,6 @@ class Website
 		char * summary; // Holds summary of website contents
 		char * review; // Holds written review of website
 		int * rating; // Holds numerical rating of 1 to 5
+		friend class Tree;
+		friend class node;
 };

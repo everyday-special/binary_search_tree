@@ -173,6 +173,13 @@ void Website::setRating(const int& newRating)
 
 
 
+void Website::getKeyword(char result[])
+{
+	strcpy(result, this->keyword);
+}
+
+
+
 std::ostream& operator<<(std::ostream& out, const Website& website)
 /* Overloaded << operator for website class
  * Parameters:
