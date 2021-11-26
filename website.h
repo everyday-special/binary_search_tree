@@ -41,6 +41,7 @@ class Website
 		void setReview(const char newReview[]);
 		void setRating(const int& newRating);
 		void getKeyword(char result[]);
+		void getTopic(char result[]);
 		
 		friend std::ostream& operator<<(std::ostream& out, const Website& website);
 

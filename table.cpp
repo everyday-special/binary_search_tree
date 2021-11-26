@@ -40,6 +40,16 @@ bool Table::remove(const char toDelete[])
 
 
 
+bool Table::removeTopic(const char topic[])
+{
+	int old_size = *size;
+	root = removeTopic(root, topic);
+	int new_size = *size;
+	return (old_size != new_size);
+}
+
+
+
 bool Table::insert(Website& newWebsite)
 {
 	int old_size = *size;
@@ -68,6 +78,27 @@ node * Table::remove(node *& root, const char toDelete[])
 		root->left = remove(root->left, toDelete);
 	if (getHeight(root->left) - getHeight(root->right) > 1 || getHeight(root->left) - getHeight(root->right) < -1)
                 root = rotate(root);
+        return root;
+}
+
+
+
+node * Table::removeTopic(node *& root, const char topic[])
+{
+        if (!root)
+                return root;
+	root->left = removeTopic(root->left, topic);
+        root->right = removeTopic(root->right, topic);
+        char rootTopic[MAX_SIZE];
+        (*(root->data)).getTopic(rootTopic);
+        int result = strcmp(topic, rootTopic);
+        if (result == 0)
+        {
+                (*size)--;
+                return deleteNode(root);
+        }
+        /*if (getHeight(root->left) - getHeight(root->right) > 1 || getHeight(root->left) - getHeight(root->right) < -1)
+                root = rotate(root);*/
         return root;
 }
 

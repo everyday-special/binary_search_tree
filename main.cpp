@@ -50,8 +50,13 @@ int main()
 		ch = getChar();
 	}
 	ch = 'a';
-	std::cout << "Removing!!!" << std::endl;
-	while (ch != 'q')
+	std::cout << "Remove all by topic: " << std::endl;
+	getString(toRemove);
+	if (table.removeTopic(toRemove))
+		std::cout << "Removed!" << std::endl;
+	else
+		std::cout << "Not removed!" << std::endl;
+	/*while (ch != 'q')
         {
 		getString(toRemove);
                 if (table.remove(toRemove))
@@ -60,7 +65,7 @@ int main()
 			std::cout << "Not Removed!" << std::endl;
                 std::cout << "Press 'q' to quit: ";
                 ch = getChar();
-        }
+        }*/
 	table.display();
 	return 0;
 }

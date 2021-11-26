@@ -180,6 +180,13 @@ void Website::getKeyword(char result[])
 
 
 
+void Website::getTopic(char result[])
+{
+	strcpy(result, this->topic);
+}
+
+
+
 std::ostream& operator<<(std::ostream& out, const Website& website)
 /* Overloaded << operator for website class
  * Parameters:
