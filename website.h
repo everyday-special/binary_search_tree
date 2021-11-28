@@ -27,8 +27,6 @@ class Website
  * 	-Copy constructor
  * 	-Default destructor
  * 	-Overloaded assignment operator
- * 	-setReview() - setter for review attribute
- * 	-setRating() - setter for rating attribute
  * 	-Overloaded insertion operator
  */
 {
@@ -38,10 +36,13 @@ class Website
 		Website(const Website& srcWebstire);
 		~Website();
 		void operator=(const Website& srcWebsite);
-		void setReview(const char newReview[]);
-		void setRating(const int& newRating);
 		void getKeyword(char result[]);
 		void getTopic(char result[]);
+		void getAddress(char result[]);
+		void getSummary(char result[]);
+		void getReview(char result[]);
+		int getRating();
+		bool isNotEmpty();
 		
 		friend std::ostream& operator<<(std::ostream& out, const Website& website);
 

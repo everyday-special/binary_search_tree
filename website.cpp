@@ -144,35 +144,6 @@ void Website::operator=(const Website& srcWebsite)
 
 
 
-void Website::setReview(const char newReview[])
-/* Mutator method for review attribute
- * Parameters: const char& newReview[] - cstring containing the new value for the review attribute
- * Return: None
- */
-{
-	int strLen; // Stores length of input strings
-
-	delete [] this->review;
-	strLen = strlen(newReview);
-	this->review = new char[++strLen];
-	strcpy(this->review, newReview);
-
-}
-
-
-
-void Website::setRating(const int& newRating)
-/* Mutator method for rating attribute
- * Parameters: const int& newRating - int representing the new value for the rating attribute
- * Return: None
- */
-{
-	delete this->rating;
-	this->rating = new int(newRating);
-}
-
-
-
 void Website::getKeyword(char result[])
 {
 	strcpy(result, this->keyword);
@@ -187,6 +158,44 @@ void Website::getTopic(char result[])
 
 
 
+void Website::getAddress(char result[])
+{
+	strcpy(result, this->address);
+}
+
+
+
+void Website::getSummary(char result[])
+{
+	strcpy(result, this->summary);
+}
+
+
+
+void Website::getReview(char result[])
+{
+	strcpy(result, this->review);
+}
+
+
+
+int Website::getRating()
+{
+	return *rating;
+}
+
+
+
+bool Website::isNotEmpty()
+{
+	if (keyword)
+		return true;
+	else
+		return false;
+}
+
+
+
 std::ostream& operator<<(std::ostream& out, const Website& website)
 /* Overloaded << operator for website class
  * Parameters:
@@ -196,11 +205,11 @@ std::ostream& operator<<(std::ostream& out, const Website& website)
  * 	-std::ostream& - ostream object with data being printed
  */
 {
-	out << "Topic: " << website.topic;
-	out << "\nKeyword: " << website.keyword;
+	out << "Keyword: " << website.keyword;
+	out << "\nTopic: " << website.topic;
 	out << "\nAddress: " << website.address;
 	out << "\nSummary: " << website.summary;
 	out << "\nReview: " << website.review;
-	out << "\nRating: " << *(website.rating) << "/5";
+	out << "\nRating: " << *(website.rating) << "/5" << std::endl;
 	return out;
 }

@@ -1,7 +1,16 @@
 #include "table.h"
+#include "menu.h"
 
 
-Website makeWebsite()
+int main()
+{
+	Menu menu = Menu();
+	menu.run();
+	return 0;
+}
+
+
+/*Website makeWebsite()
 {
         char newTopic[MAX_SIZE];
         char newAddress[MAX_SIZE];
@@ -56,7 +65,7 @@ int main()
 		std::cout << "Removed!" << std::endl;
 	else
 		std::cout << "Not removed!" << std::endl;
-	/*while (ch != 'q')
+	while (ch != 'q')
         {
 		getString(toRemove);
                 if (table.remove(toRemove))
@@ -65,10 +74,10 @@ int main()
 			std::cout << "Not Removed!" << std::endl;
                 std::cout << "Press 'q' to quit: ";
                 ch = getChar();
-        }*/
+        }
 	table.display();
 	return 0;
 }
-
+*/
 
 

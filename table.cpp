@@ -60,6 +60,33 @@ bool Table::insert(Website& newWebsite)
 
 
 
+bool Table::retrieve(const char keyword[], Website & retrieved)
+{
+	return retrieve(root, keyword, retrieved);
+}
+
+
+
+bool Table::retrieve(node * root, const char keyword[], Website & retrieved)
+{
+	if (!root)
+		return false;
+	char rootKeyword[MAX_SIZE];
+	(*(root->data)).getKeyword(rootKeyword);
+	int result = strcmp(keyword, rootKeyword);
+	if (result == 0)
+	{
+		retrieved = *(root->data);
+		return true;
+	}
+	else if (result > 0)
+		return retrieve(root->right, keyword, retrieved);
+	else
+		return retrieve(root->left, keyword, retrieved);
+}
+
+
+
 node * Table::remove(node *& root, const char toDelete[])
 {
 	if (!root)
@@ -97,8 +124,8 @@ node * Table::removeTopic(node *& root, const char topic[])
                 (*size)--;
                 return deleteNode(root);
         }
-        /*if (getHeight(root->left) - getHeight(root->right) > 1 || getHeight(root->left) - getHeight(root->right) < -1)
-                root = rotate(root);*/
+        if (getHeight(root->left) - getHeight(root->right) > 1 || getHeight(root->left) - getHeight(root->right) < -1)
+                root = rotate(root);
         return root;
 }
 
@@ -247,6 +274,13 @@ node * Table::doubleRight(node *& root)
 
 
 
+int Table::getHeight()
+{
+	return getHeight(root);
+}
+
+
+
 int Table::getHeight(node * root)
 {
 	if (!root)
@@ -256,9 +290,15 @@ int Table::getHeight(node * root)
 
 
 
-void Table::display()
+bool Table::display()
 {
-	display(root);
+	if (*size > 0)
+	{
+		display(root);
+		return true;
+	}
+	else
+		return false;
 }
 
 
@@ -272,3 +312,88 @@ void Table::display(node * root)
 		display(root->right);
 	}
 }
+
+
+
+bool Table::saveToFile(const char filename[])
+{
+	bool ret;
+	std::ofstream outFile;
+
+	outFile.open(filename);
+	if (!outFile)
+		return false;
+
+	ret = saveToFile(root, outFile);
+	outFile.close();
+	return ret;
+}
+
+
+
+bool Table::saveToFile(node * root, std::ofstream & outFile)
+{
+	if (!root)
+		return false;
+
+	// Save left and right children
+	saveToFile(root->left, outFile);
+	saveToFile(root->right, outFile);
+
+	// Save current node data
+	char temp[MAX_SIZE];
+	root->data->getKeyword(temp);
+	outFile << temp << ';';
+	root->data->getTopic(temp);
+	outFile << temp << ';';
+	root->data->getAddress(temp);
+	outFile << temp << ';';
+	root->data->getSummary(temp);
+	outFile << temp << ';';
+	root->data->getReview(temp);
+	outFile << temp << ';';
+	outFile << root->data->getRating() << std::endl;
+
+	return true;
+}
+
+
+
+bool Table::loadFromFile(const char filename[])
+{
+	char tempKeyword[MAX_SIZE]; // Stores keyword data from file
+	char tempTopic[MAX_SIZE]; // Stores topic data from file
+        char tempAddress[MAX_SIZE]; // stores address data from file
+        char tempSummary[MAX_SIZE]; // stores summary data from file
+        char tempReview[MAX_SIZE]; // stores review data from file
+        int tempRating; // stores rating data from file
+        std::ifstream inFile; // file stream
+
+        inFile.open(filename);
+        if (!inFile)
+                return false;
+
+        inFile.get(tempKeyword, MAX_SIZE, ';');
+        while (!inFile.eof())
+        {
+                inFile.get();
+		inFile.get(tempTopic, MAX_SIZE, ';');
+		inFile.get();
+                inFile.get(tempAddress, MAX_SIZE, ';');
+                inFile.get();
+                inFile.get(tempSummary, MAX_SIZE, ';');
+                inFile.get();
+                inFile.get(tempReview, MAX_SIZE, ';');
+                inFile.get();
+                inFile >> tempRating;
+                inFile.ignore(MAX_SIZE, '\n');
+
+                Website newWebsite(tempTopic, tempKeyword, tempAddress, tempSummary, tempReview, tempRating);
+                insert(newWebsite);
+
+                inFile.get(tempKeyword, MAX_SIZE, ';');
+        }
+        inFile.close();
+        return true;
+}
+

@@ -1,0 +1,3 @@
+amazon;shopping;www.amazon.com;where you can buy anything and everything and get it tomorrow;it is pretty convenient!;4
+reddit;social media;www.reddit.com;front page of the internet;great way to kill time;5
+gmail;email;www.gmail.com;homepage for gmail email service;great!;5
