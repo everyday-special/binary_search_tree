@@ -63,3 +63,20 @@ Return: None
 	}
 	std::cin.ignore(MAX_SIZE, '\n');
 }
+
+
+
+void lower(char str[])
+/* Purpose: converts a cstring with mixed uppercase and lowercase characters to all lowercase characters
+ * Parameters: char str[] - cstring to be converted to all lowercase
+ * Return: None
+ */
+{
+	int i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] >= 65 && str[i] <= 90)
+			str[i] = str[i] + 32;
+		i++;
+	}
+}

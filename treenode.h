@@ -9,7 +9,17 @@
 #include "website.h"
 
 class node
-/*
+/* Class representing a node in the binary search tree
+ * This class has 1 friend class:
+ * 	-Table
+ * This class has 3 private data members:
+ * 	-data - website data stored at this node
+ * 	-left - pointer to left child node
+ * 	-right - pointer to right child node
+ * This class has 3 public member and friend functions:
+ * 	-Overloaded constructor
+ * 	-Destructor
+ * 	-Overlaoded insertion operator
  */
 {
 	public:
@@ -30,9 +40,8 @@ class node
 
 
 	private:
-		//int * data;
-		Website * data;
-		node * left;
-		node * right;
+		Website * data; // Website data stored at this node
+		node * left; // Pointer to left child/subtree
+		node * right; // Pointer to right child/subtree
 		friend class Table;
 };

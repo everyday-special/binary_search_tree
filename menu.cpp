@@ -146,6 +146,7 @@ const Website Menu::getWebsite()
 
 	std::cout << "Please enter a unique keyword for the website: ";
 	getString(newKeyword);
+	lower(newKeyword);
 	std::cout << "Please enter the website's topic: ";
 	getString(newTopic);
 	std::cout << "Please enter the website's address: ";
@@ -174,7 +175,10 @@ void Menu::insert()
 {
 	Website newWebsite = getWebsite();
 
-	table->insert(newWebsite);
+	if (table->insert(newWebsite))
+		std::cout << "\nWebsite added." << std::endl;
+	else
+		std::cout << "\nWebsite was already in the table." << std::endl;
 }
 
 
@@ -203,11 +207,12 @@ void Menu::retrieve()
 
 	std::cout << "\nPlease enter the keyword for which you wish to retrieve from the table: " << std::endl;
 	getString(query);
+	lower(query);
 	ret = table->retrieve(query, *retrieved);
 	if (ret)
-		std::cout << "Successfully retrieved data for '" << query << "'. Select option 'f' in the menu to view the retrieved data." << std::endl;
+		std::cout << "\nSuccessfully retrieved data for '" << query << "'. Select option 'f' in the menu to view the retrieved data." << std::endl;
 	else
-		std::cout << "No websites were found with a keyword matching '" << query << "'. Please try again." << std::endl;
+		std::cout << "\nNo websites were found with a keyword matching '" << query << "'. Please try again." << std::endl;
 }
 
 
@@ -239,10 +244,11 @@ void Menu::remove()
 
 	std::cout << "Please enter the keyword for the website you wish to remove: ";
 	getString(keyword);
+	lower(keyword);
 	if (table->remove(keyword))
-		std::cout << "'" << keyword << "' was removed from." << std::endl;
+		std::cout << "\n'" << keyword << "' was removed." << std::endl;
 	else
-		std::cout << "No websites were removed." << std::endl;
+		std::cout << "\nNo websites were removed." << std::endl;
 }
 
 
@@ -254,9 +260,9 @@ void Menu::removeTopic()
 	std::cout << "Please enter the topic you wish to remove from the table: ";
 	getString(topic);
 	if (table->removeTopic(topic))
-		std::cout << "All websites with topic '" << topic << "' were removed from the table." << std::endl;
+		std::cout << "\nAll websites with topic '" << topic << "' were removed from the table." << std::endl;
 	else
-		std::cout << "No websites were removed." << std::endl;
+		std::cout << "\nNo websites were removed." << std::endl;
 }
 
 
@@ -267,5 +273,10 @@ void Menu::checkHeight()
  * Return: None
  */
 {
-	std::cout << "Height of the table: " << table->getHeight() << std::endl;
+	int height = table->getHeight();
+	int size = table->getSize();
+	double result = log2(size);
+	std::cout << "\nSize of the table: " << table->getSize() << std::endl;
+	std::cout << "Height of the table: " << height << std::endl;
+	std::cout << "Log2 of size plus 1: " << round(result) + 1 << std::endl;
 }

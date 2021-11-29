@@ -1,3 +1,35 @@
-amazon;shopping;www.amazon.com;where you can buy anything and everything and get it tomorrow;it is pretty convenient!;4
-reddit;social media;www.reddit.com;front page of the internet;great way to kill time;5
-gmail;email;www.gmail.com;homepage for gmail email service;great!;5
+alltrails;Hiking;www.alltrails.com;Hiking Trail mapping and information service;Excellent way to find and enjoy great hikes;5
+audubon;Birding;www.audubon.org;Homepage for the National Audubon Society;Good information about birding and conservation efforts;4
+audible;Audiobooks;www.audible.com;Online audiobook and podcast service;Great source for audiobooks and podcasts.;4
+amazon;Shopping;www.amazon.com;Homepage of amazon;You can buy pretty much anything;4
+ebird;Birding;ebird.org;Online database of bird observations;Excellent resource for finding where birds are locally and learning about birds generally;5
+facebook;Social Media;www.facebook.com;Homepage for facebook;A nice way to keep in touch with friends and family. Not a good source of news.;2
+fitbit;Fitness;www.fitbit.com;Smart watch and fitness tracker. Also has exercise programs;Pretty good way to do at home workouts;3
+expedia;Travel;www.expedia.com;Online Travel Shopping Company;Good prices, where I buy flights;3
+cnbc;News;www.cnbc.com;Business and Financial news;Pretty mainstream but has good information;3
+google maps;Navigation;maps.google.com;Google Maps;Great! I rely upon this heavily to get from A to B to C, etc.;5
+google;Search Engine;www.google.com;Google Search Engine;Great search engine. They probably do sketchy things with my data.;5
+hulu;Entertainment;www.hulu.com;Streaming service for TV shows and movies;Has a good collection of shows and movies;4
+hbomax;Entertainment;www.hbomax.com;Streaming platform for HBOs TV shows and many movies;Has some of my favorite TV shows!;5
+grubhub;Food Delivery;www.grubhub.com;Food ordering and delivery service;Great! Has a lot of restaurants and delivers food quickly.;4
+gmail;Email;mail.google.com;Gmail Email service;Great email service;5
+lyft;Transportation;www.lyft.com;Car service;A little pricey, but great when you need a ride somewhere;3
+linkedin;Social Media;www.linkedin.com;Social Media for professional profiles;Useful to have in todays corporate world;3
+npr;News;www.npr.com;Reliable source of news;Relaible source of news;5
+popehat;Blog;www.popehat.com;A legal blog by lawyer Ken White;I really like Ken White and he has an interesting perspective;4
+pcc;School;www.pcc.edu;Homepage for Portland Community College;Useful for me as a student;4
+opb;News;www.opb.org;Front page of Oregon Public Broadcasting;A great place to hear local news and stories;5
+netflix;Entertainment;www.netflix.com;A TV and movie streaming service;It has some great shows;4
+reddit;Social Media;www.reddit.com;The homepage of the internet;I like it alot!;4
+recreation.gov;Camping;www.recreation.gov;Gateway to explore America's outdoor destinations;Great place to book campsites in parks;4
+stack overflow;Education;stackoverflow.com;A great resource for troubleshooting programming problems;Very helpful!;5
+spotify;Music;open.spotify.com;Spotify web player;Great place to stream music and podcasts;4
+splendid table;Cooking;www.splendidtable.org;Public Radio's culinary culture and lifestyle program;Has some interesting stories and recipes, but boring sometimes;3
+vag;Art;www.vanartgallery.bc.ca;Vancouver, BC Art gallery's homepage;I like this gallery a lot. Great way to stay up to date;4
+twitter;Social Media;www.twitter.com;front page of twitter;Not my favorite social media platform;2
+yelp;Food;www.yelp.com;User recommendations for restaurants, shopping, bars, etc.;A great way to find good and new places to eat;4
+youtube;Entertainment;www.youtube.com;Online video sharing platform;Has a lot of interesting videos and music;3
+wikipedia;Education;en.wikipedia.org;Online free encyclopedia;A great resource for information on nearly any topic;5
+steam;Gaming;store.steampowered.com;Steam Store;Has a lot of great indie games available with regular sales;4
+portland;Government;www.portland.gov;Homepage for the Portland Government;Has local information on resources. Pretty useful sometimes.;3
+leetcode;Education;www.leetcode.com;Technical interview practice problems;A fun way to learn!;5

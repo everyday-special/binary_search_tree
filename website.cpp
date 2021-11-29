@@ -145,6 +145,10 @@ void Website::operator=(const Website& srcWebsite)
 
 
 void Website::getKeyword(char result[])
+/* Accessor function for keyword data member
+ * Parameters: char result[] - cstring that holds the value of keyword
+ * Return: None
+ */
 {
 	strcpy(result, this->keyword);
 }
@@ -152,6 +156,10 @@ void Website::getKeyword(char result[])
 
 
 void Website::getTopic(char result[])
+/* Accessor function for topic data member
+ * Parameters: char result[] - cstring that holds the value of topic
+ * Return: None
+ */
 {
 	strcpy(result, this->topic);
 }
@@ -159,6 +167,10 @@ void Website::getTopic(char result[])
 
 
 void Website::getAddress(char result[])
+/* Accessor function for address data member
+ * Parameters: char result[] - cstring that holds the value of address
+ * Return: None
+ */
 {
 	strcpy(result, this->address);
 }
@@ -166,6 +178,10 @@ void Website::getAddress(char result[])
 
 
 void Website::getSummary(char result[])
+/* Accessor function for summary data member
+ * Parameters: char result[] - cstring that holds the value of summary
+ * Return: None
+ */
 {
 	strcpy(result, this->summary);
 }
@@ -173,6 +189,10 @@ void Website::getSummary(char result[])
 
 
 void Website::getReview(char result[])
+/* Accessor function for review data member
+ * Parameters: char result[] - cstring that holds the value of review
+ * Return: None
+ */
 {
 	strcpy(result, this->review);
 }
@@ -180,6 +200,10 @@ void Website::getReview(char result[])
 
 
 int Website::getRating()
+/* Accessor function for rating data member
+ * Parameters: None
+ * Return: int - value of rating data member
+ */
 {
 	return *rating;
 }
@@ -187,6 +211,10 @@ int Website::getRating()
 
 
 bool Website::isNotEmpty()
+/* Checks to see if any website data is stored in website
+ * Parameters: None
+ * Return: bool - True if data is stored in website, false if not
+ */
 {
 	if (keyword)
 		return true;

@@ -9,9 +9,12 @@
 #include "treenode.h"
 
 node::node(const Website& website)
+/* Constructor for node
+ * Parameters: Website website - website data being stored at this node. Passed by reference
+ * Return: None
+ */
 {
         data = new Website(website);
-	//data = new int(val);
 	left = nullptr;
 	right = nullptr;
 }
@@ -19,6 +22,10 @@ node::node(const Website& website)
 
 
 node::~node()
+/* Destructor for node
+ * Parameters: None
+ * Return: None
+ */
 {
 	delete data;
 	data = nullptr;

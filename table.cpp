@@ -1,6 +1,10 @@
 #include "table.h"
 
 Table::Table()
+/* Constructor for table class
+ * Parameters: None
+ * Return: None
+ */
 {
 	root = nullptr;
 	size = new int(0);
@@ -9,6 +13,10 @@ Table::Table()
 
 
 Table::~Table()
+/* Destructor for table class
+ * Parameters: None
+ * Return: None
+ */
 {
 	destroy(root);
 	delete size;
@@ -18,6 +26,10 @@ Table::~Table()
 
 
 void Table::destroy(node *& root)
+/* Recursive backend for destructor and deleting all nodes in the tree
+ * Parameters: node *& root - current root of the tree. Passed by reference
+ * Return: None
+ */
 {
 	if (root)
 	{
@@ -31,6 +43,10 @@ void Table::destroy(node *& root)
 
 
 bool Table::remove(const char toDelete[])
+/* Removes the website that matches the keyword from the tree.
+ * Parameters: const char toDelete[] - cstring representing the keyword of the website to be removed from the tree
+ * Return: bool - True if website was removed. False if not.
+ */
 {
 	int old_size = *size;
 	root = remove(root, toDelete);
@@ -41,6 +57,10 @@ bool Table::remove(const char toDelete[])
 
 
 bool Table::removeTopic(const char topic[])
+/* Removes all websites that match a specified topic from the tree
+ * Parameters: const char topic[] - cstring representing the topic to be removed from the tree
+ * Return: bool - true if websites were removed, false if no websites were removed.
+ */
 {
 	int old_size = *size;
 	root = removeTopic(root, topic);
@@ -51,6 +71,10 @@ bool Table::removeTopic(const char topic[])
 
 
 bool Table::insert(Website& newWebsite)
+/* Adds a new website to the tree
+ * Parameters: Website& newWebsite - website to be added. passed by reference
+ * Return: bool - true if website was added, false if not.
+ */
 {
 	int old_size = *size;
 	root = insert(root, newWebsite);
@@ -61,6 +85,12 @@ bool Table::insert(Website& newWebsite)
 
 
 bool Table::retrieve(const char keyword[], Website & retrieved)
+/* Retrieves a specific website from the tree.
+ * Parameters:
+ * 	-const char keyword[] - cstring representing the keyword to retrieve
+ * 	-Website & retrieved - stores the website data if there is a keyword match
+ * Return: bool - true if there was a keyword match and data was retrieved, false if no
+ */
 {
 	return retrieve(root, keyword, retrieved);
 }
@@ -68,6 +98,13 @@ bool Table::retrieve(const char keyword[], Website & retrieved)
 
 
 bool Table::retrieve(node * root, const char keyword[], Website & retrieved)
+/* Recursive searches tree for a keyword match. If there is a match, stores the data in retrieved
+ * Parameters:
+ * 	-node * root - current node
+ * 	-const char keyword[] - keyword of website to retrieve
+ * 	-Website & retrieved - stores website data in case of keyword match. Passed by reference
+ * Return: bool - true if keyword match and data is retrieved, false if not
+ */
 {
 	if (!root)
 		return false;
@@ -88,6 +125,12 @@ bool Table::retrieve(node * root, const char keyword[], Website & retrieved)
 
 
 node * Table::remove(node *& root, const char toDelete[])
+/* Recursive backend for removing a node
+ * Parameters:
+ * 	- node *& root - Pointer to current node in tree. Passed by reference.
+ * 	- const char toDelete[] - cstring containing keyword of website to be removed from the tree
+ * Return: node * - pointer to node that should be at this location after a node is removed
+ */
 {
 	if (!root)
 		return root;
@@ -111,6 +154,12 @@ node * Table::remove(node *& root, const char toDelete[])
 
 
 node * Table::removeTopic(node *& root, const char topic[])
+/* Recursive backend for removing all nodes of a topic
+ * Parameters:
+ *      - node *& root - Pointer to current node in tree. Passed by reference.
+ *      - const char topic[] - cstring containing topic to be removed from the tree
+ * Return: node * - pointer to node that should be at this location after topic is removed
+ */
 {
         if (!root)
                 return root;
@@ -132,6 +181,10 @@ node * Table::removeTopic(node *& root, const char topic[])
 
 
 node * Table::deleteNode(node *& toDelete)
+/* Deletes the given node and returns the node that should be at that location (next order)
+ * Parameters: node *& toDelete - pointer to node that is to be deleted
+ * Return: node * - pointer to node that should be at the location of the old node
+ */
 {
 	// If toDelete is a leaf...
 	if (!(toDelete->left) && !(toDelete->right))
@@ -188,6 +241,12 @@ node * Table::deleteNode(node *& toDelete)
 
 
 node * Table::insert(node *& root, Website& newWebsite)
+/* Recursive backend for inserting a new website/node into the tree
+ * Parameters:
+ * 	node *& root - current node in the tree. Passed by reference
+ * 	Website& newWebsite - website data to be added to the tree. Passed by reference
+ * Return: node * - node that should be at that location after insertion operation.
+ */
 {
 	if (!root)
 	{
@@ -214,6 +273,10 @@ node * Table::insert(node *& root, Website& newWebsite)
 
 
 node * Table::rotate(node *& root)
+/* Determines and performs the type of rotation that needs to be done to maintain balance at a given node
+ * Parameters: node *& root - node that needs to be rotated. Passed by reference
+ * Return: node * - pointer to node that should be at that location after the rotation operation
+ */
 {
 	node * l = root->left;
 	node * r = root->right;
@@ -236,6 +299,10 @@ node * Table::rotate(node *& root)
 
 
 node * Table::singleLeft(node *& root)
+/* Performs single left rotation
+ * Parameters: node *& root -  pointer to node that needs to be rotated
+ * Return: node * - pointer to node that should be at that location after rotation
+ */
 {
 	node * r = root->right;
 	root->right = r->left;
@@ -246,6 +313,10 @@ node * Table::singleLeft(node *& root)
 
 
 node * Table::singleRight(node *& root)
+/* Performs single right rotation
+ * Parameters: node *& root -  pointer to node that needs to be rotated
+ * Return: node * - pointer to node that should be at that location after rotation
+ */
 {
 	node * l = root->left;
 	root->left = l->right;
@@ -255,6 +326,10 @@ node * Table::singleRight(node *& root)
 
 
 node * Table::doubleLeft(node *& root)
+/* Performs double left rotation
+ * Parameters: node *& root -  pointer to node that needs to be rotated
+ * Return: node * - pointer to node that should be at that location after rotation
+ */
 {
 	node * r = singleRight(root->right);
 	root->right = r->left;
@@ -265,6 +340,10 @@ node * Table::doubleLeft(node *& root)
 
 
 node * Table::doubleRight(node *& root)
+/* Performs double right rotation
+ * Parameters: node *& root -  pointer to node that needs to be rotated
+ * Return: node * - pointer to node that should be at that location after rotation
+ */
 {
 	node * l = singleLeft(root->left);
 	root->left = l->right;
@@ -275,13 +354,32 @@ node * Table::doubleRight(node *& root)
 
 
 int Table::getHeight()
+/* Gets the height of the entire tree
+ * Parameters: Nonde
+ * Return: int - height of the tree (maximum length from root to leaf)
+ */
 {
 	return getHeight(root);
 }
 
 
 
+int Table::getSize()
+/* Returns the size/amount of nodes in the entire tree
+ * Parameters: None
+ * Return: int - size of the tree (number of nodes in the tree)
+ */
+{
+	return *size;
+}
+
+
+
 int Table::getHeight(node * root)
+/* Gets the height of a node
+ * Paremeters: node * root - node to get the height of
+ * Return: int - height of the node in the tree
+ */
 {
 	if (!root)
 		return 0;
@@ -291,6 +389,10 @@ int Table::getHeight(node * root)
 
 
 bool Table::display()
+/* Displays all the website data in the tree in alphabetical order
+ * Parameters: None
+ * Return: bool - true if tree is non-empty and data was printed, false if tree is empty
+ */
 {
 	if (*size > 0)
 	{
@@ -304,6 +406,10 @@ bool Table::display()
 
 
 void Table::display(node * root)
+/* recursively displays data at root and its subtree
+ * Parameters: node * root - root of subtree to print
+ * Return: None
+ */
 {
 	if (root)
 	{
@@ -316,6 +422,10 @@ void Table::display(node * root)
 
 
 bool Table::saveToFile(const char filename[])
+/* Saves data in tree to file
+ * Parameters: const char filename[] - name of file to save data to
+ * Return: bool - true if save was successful, false if not
+ */
 {
 	bool ret;
 	std::ofstream outFile;
@@ -332,6 +442,12 @@ bool Table::saveToFile(const char filename[])
 
 
 bool Table::saveToFile(node * root, std::ofstream & outFile)
+/* Saves data in subtree at root to file
+ * Parameters:
+ * 	- node * root - root of subtree to save to file
+ * 	- std::ofstream & outFile - file stream. Passed by reference
+ * Return: bool - true if data was saved to file, false if not
+ */
 {
 	if (!root)
 		return false;
@@ -360,6 +476,10 @@ bool Table::saveToFile(node * root, std::ofstream & outFile)
 
 
 bool Table::loadFromFile(const char filename[])
+/* Loads data from file 'filename' and adds it to the tree
+ * Paraeters: const char filename[] - name of file to load data from
+ * Return: bool - true if data was successfully loaded, false if not
+ */
 {
 	char tempKeyword[MAX_SIZE]; // Stores keyword data from file
 	char tempTopic[MAX_SIZE]; // Stores topic data from file
