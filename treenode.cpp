@@ -1,6 +1,4 @@
 /* Matthew Lidell
- * CS 260
- * Project 4
  * 11/24/21
  * File: treenode.cpp
  * Purpose: Defines the node class

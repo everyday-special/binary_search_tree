@@ -1,6 +1,4 @@
 /* Matthew Lidell
- * CS 260
- * Project 4
  * 11/22/21
  * File: table.h
  * Purpose: Defines the BST table class

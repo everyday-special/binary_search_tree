@@ -2,7 +2,6 @@
  * Author: Matthew Lidell
  * CS260 Project 3
  * Date: 11/7/21
- * file: menu.h
  */
 #pragma once
 #include <cmath>
